@@ -43,7 +43,19 @@ export async function POST(req) {
     const content = [
       {
         type: "input_text",
-        text: `You are given ${files.length} image(s) of handwritten student notes. Transcribe the content into Markdown format suitable for Notion.\n\nRules:\n1) Transcribe text exactly.\n2) Preserve headings, lists, spacing.\n3) Describe drawings as (Drawing description).\n4) No extra explanations.\n5) Don't wrap output in markdown code block.\n\nSeparate multiple images with lines: --- Page X ---`,
+        text: `You are given ${files.length} document(s) containing handwritten or printed student notes (may include PDF, PPTX, or image files).
+    
+    Your task: Transcribe the content into clean, structured Markdown text suitable for Notion.
+    
+    Rules:
+    1. Transcribe **exact text** as it appears — including headers, lists, bullet points, and spacing.
+    2. If **tables** are present, reconstruct them accurately using standard Markdown table syntax.
+    3. If **math formulas** or equations are present, keep their **original notation** or render them in LaTeX-style (inline: $...$, block: $$...$$).
+    4. If **drawings, diagrams, or non-text elements** are present, describe them briefly in parentheses like: (Drawing: ...).
+    5. Do not summarize or explain anything. Preserve structure and flow exactly.
+    6. Separate each file’s transcription with a line: 
+    --- Page X ---
+    7. Do not wrap the entire output in a Markdown code block.`,
       },
     ];
 

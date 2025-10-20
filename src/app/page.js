@@ -169,7 +169,7 @@ async function handleCopyFlashcards() {
   async function handleCopy() { if (!result) return; try { await navigator.clipboard.writeText(result); } catch { setError("Failed to copy to clipboard."); } }
 
   const buttonStyle = {
-    background: "#fc7703",
+    background: "#7c46d4",
     color: "#fff",
     border: "none",
     padding: "12px 20px",
@@ -191,9 +191,9 @@ async function handleCopyFlashcards() {
 
   return (
     <main style={{ maxWidth: 820, margin: "28px auto", padding: 16, background: "#f5f5f5", color: "#000", borderRadius: 6 }}>
-      <h1 style={{ marginBottom: 8 }}>Paper Notes 2 Digital Notes</h1>
+      <h1 style={{ marginBottom: 8 }}>Raw Files 2 Digital Notes</h1>
       <p style={{ marginTop: 0, marginBottom: 16 }}>
-        Upload photos of your handwritten notes. Reorder them by dragging, then click Convert to get a
+        Upload files like pdf of pptx of lectures. Reorder them by dragging, then click Convert to get a
         single Markdown transcription. Your API key is stored directly on your device in your browser. We do not collect or store your data.
       </p>
 
@@ -343,78 +343,6 @@ async function handleCopyFlashcards() {
             borderRadius: 4
           }}
         />
-
-                {/* Flashcards Section */}
-          <div style={{ marginTop: 28, padding: 12, border: "1px solid #e6e6e6", borderRadius: 6 }}>
-            <h2>Generate Flashcards</h2>
-            <div style={{ marginBottom: 8 }}>
-              <label style={{ marginRight: 8 }}>What to focus on?</label>
-              <select 
-              style={{ padding: 8, background: "none", color: "#000", border: "1px solid #e6e6e6", borderRadius: 4 }}
-              value={flashFocus} onChange={(e) => setFlashFocus(e.target.value)}>
-                <option value="vocabulary">Vocabulary and Language</option>
-                <option value="terminology">Terminology and Concepts</option>
-                <option value="quiz">Quiz</option>
-              </select>
-            </div>
-
-                        <div style={{ marginBottom: 8 }}>
-              <label style={{ marginRight: 8 }}>ADVANCED | Flashcards direction:</label>
-              <select 
-              style={{ padding: 8, background: "none", color: "#000", border: "1px solid #e6e6e6", borderRadius: 4 }}
-              value={flashDirection} onChange={(e) => setFlashDirection(e.target.value)}>
-                <option value=">>">Default</option>
-                <option value="<<">Backwards</option>
-                <option value="<>">Both Ways</option>
-              </select>
-            </div>
-
-            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <button
-                onClick={handleFlashcards}
-                disabled={flashLoading || !savedApiKey}
-                style={buttonStyle}
-              >
-                {flashLoading ? "Generating..." : "Generate"}
-              </button>
-
-              <button
-                onClick={handleClearFlashcards}
-                disabled={!flashcards}
-                style={buttonStyle2}
-              >
-                Clear
-              </button>
-
-              <button
-                onClick={handleCopyFlashcards}
-                disabled={!flashcards}
-                style={buttonStyle2}
-              >
-                Copy
-              </button>
-
-            </div>
-
-            {flashcards && (
-              <>
-                <h3 style={{ marginTop: 20 }}>Flashcards</h3>
-                <textarea
-                  value={flashcards}
-                  readOnly
-                  rows={14}
-                  style={{
-                    width: "100%",
-                    fontFamily: "ui-monospace, Menlo, monospace",
-                    background: "#fff",
-                    color: "#000",
-                    border: "1px solid #000",
-                    borderRadius: 4
-                  }}
-                />
-              </>
-            )}
-          </div>
 
       <br></br>
       <p style={{ marginTop: 32, marginBottom: 16, color: "#a8a8a8" }}>
