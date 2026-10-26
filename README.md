@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Raw Files 2 Digital
 
-## Getting Started
+Turn raw files into structured digital content.
 
-First, run the development server:
+**Live:** [rawfiles2digital.vercel.app](https://rawfiles2digital.vercel.app)  
+**Portfolio:** [danshandro.com](https://danshandro.com)
+
+A small Next.js app by [Dan Shandro](https://danshandro.com), design engineer and product designer. Upload images of handwritten or printed notes, set the reading order, and get a single Markdown transcription you can edit or paste into a notes tool.
+
+## Who it is for
+
+People who already have the source as photos — lecture pages, handwritten sheets, printed handouts — and want structured text without retyping it. You bring your own OpenAI API key. It is saved in the browser (`localStorage`) and sent only with the conversion request.
+
+## What it does
+
+1. Save an API key and pick a model in the page.
+2. Add images, including HEIC. Drag items to set order, or remove them.
+3. Convert. The app posts the files to `/api/process`, which calls the OpenAI API and returns Markdown: headings, lists, tables, and formulas kept as written.
+
+No environment file is required. The key is not stored on the server.
+
+## Stack
+
+- Next.js 15 (App Router) and React 18
+- JavaScript
+- OpenAI Node SDK
+
+Dependencies are installed with npm (`package-lock.json`).
+
+## Run locally
+
+Node.js 18.18 or later.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000), save an API key in the page, then upload images.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint via `next lint` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+src/app/page.js                 Upload, reorder, and result UI
+src/app/layout.js               Root layout and metadata
+src/app/globals.css             Global styles
+src/app/api/process/route.js    Transcription route
+public/                         Static assets
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Dan Shandro](https://danshandro.com) — Design Engineer / Product Designer.
